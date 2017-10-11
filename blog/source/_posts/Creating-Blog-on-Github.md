@@ -6,11 +6,6 @@ categories: 开发
 ---
 使用Hexo在Github上创建自己的Blog。
 
-```swift
-let s = "Hello World!"
-print(s)
-```
-
 ## 搭建步骤
 
 ### 安装Hexo
