@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://www.gouchicao.com/2017/10/20/自定义视图/CustomViewAttributesInspector.png">
 <meta property="og:image" content="http://www.gouchicao.com/2017/10/20/自定义视图/CustomViewAttributesInspectorRedraw.png">
 <meta property="og:image" content="http://www.gouchicao.com/2017/10/20/自定义视图/CircleView.png">
-<meta property="og:updated_time" content="2017-10-20T09:03:08.000Z">
+<meta property="og:updated_time" content="2017-10-20T23:00:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自定义视图">
 <meta name="twitter:description" content="准备 创建 iOS 应用 Single View App，名字 CircleView。 删除文件 ViewController.swift。 删除 Main.storyboard 里的 ViewController。  ViewController 如何与类关联 打开 Main.storyboard，从 Object Library 拖一个 View Controller。    新建 Cocoa">
@@ -135,36 +135,36 @@
 <li><p>编码 CircleView.swift</p>
 </li>
 </ol>
-<pre class="line-numbers language-Swift"><code class="language-Swift">import UIKit
+<pre class="line-numbers language-swift"><code class="language-swift"><span class="token keyword">import</span> <span class="token builtin">UIKit</span>
 
-@IBDesignable
-class CircleView: UIView {
+<span class="token atrule">@IBDesignable</span>
+<span class="token keyword">class</span> <span class="token class-name">CircleView</span><span class="token punctuation">:</span> <span class="token builtin">UIView</span> <span class="token punctuation">{</span>
 
-    @IBInspectable
-    var lineWidth: CGFloat = 5 { didSet { setNeedsDisplay() } }
+    <span class="token atrule">@IBInspectable</span>
+    <span class="token keyword">var</span> lineWidth<span class="token punctuation">:</span> <span class="token builtin">CGFloat</span> <span class="token operator">=</span> <span class="token number">5</span> <span class="token punctuation">{</span> <span class="token keyword">didSet</span> <span class="token punctuation">{</span> <span class="token function">setNeedsDisplay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span>
 
-    @IBInspectable
-    var color: UIColor = UIColor.red { didSet { setNeedsDisplay() } }
+    <span class="token atrule">@IBInspectable</span>
+    <span class="token keyword">var</span> color<span class="token punctuation">:</span> <span class="token builtin">UIColor</span> <span class="token operator">=</span> <span class="token builtin">UIColor</span><span class="token punctuation">.</span>red <span class="token punctuation">{</span> <span class="token keyword">didSet</span> <span class="token punctuation">{</span> <span class="token function">setNeedsDisplay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span>
 
-    @IBInspectable
-    var scale: CGFloat = 0.9 { didSet { setNeedsDisplay() } }
+    <span class="token atrule">@IBInspectable</span>
+    <span class="token keyword">var</span> scale<span class="token punctuation">:</span> <span class="token builtin">CGFloat</span> <span class="token operator">=</span> <span class="token number">0.9</span> <span class="token punctuation">{</span> <span class="token keyword">didSet</span> <span class="token punctuation">{</span> <span class="token function">setNeedsDisplay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span>
 
-    var circleCenter: CGPoint {
-        return convert(center, from: superview)
-    }
-    var radius: CGFloat {
-        return min(bounds.size.width, bounds.size.height) / 2 * scale
-    }
+    <span class="token keyword">var</span> circleCenter<span class="token punctuation">:</span> <span class="token builtin">CGPoint</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">convert</span><span class="token punctuation">(</span>center<span class="token punctuation">,</span> from<span class="token punctuation">:</span> superview<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">var</span> radius<span class="token punctuation">:</span> <span class="token builtin">CGFloat</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">min</span><span class="token punctuation">(</span>bounds<span class="token punctuation">.</span>size<span class="token punctuation">.</span>width<span class="token punctuation">,</span> bounds<span class="token punctuation">.</span>size<span class="token punctuation">.</span>height<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span> <span class="token operator">*</span> scale
+    <span class="token punctuation">}</span>
 
-    override func draw(_ rect: CGRect) {
-        let circle = UIBezierPath(arcCenter: circleCenter, radius: radius,
-                                  startAngle: 0, endAngle: CGFloat(2*Double.pi), clockwise: true)
-        color.set()
-        circle.fill()
-        circle.stroke()
-    }
+    <span class="token keyword">override</span> <span class="token keyword">func</span> <span class="token function">draw</span><span class="token punctuation">(</span><span class="token number">_</span> rect<span class="token punctuation">:</span> <span class="token builtin">CGRect</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> circle <span class="token operator">=</span> <span class="token function">UIBezierPath</span><span class="token punctuation">(</span>arcCenter<span class="token punctuation">:</span> circleCenter<span class="token punctuation">,</span> radius<span class="token punctuation">:</span> radius<span class="token punctuation">,</span>
+                                  startAngle<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> endAngle<span class="token punctuation">:</span> <span class="token function">CGFloat</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">*</span><span class="token builtin">Double</span><span class="token punctuation">.</span>pi<span class="token punctuation">)</span><span class="token punctuation">,</span> clockwise<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+        color<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        circle<span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        circle<span class="token punctuation">.</span><span class="token function">stroke</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
 
-}
+<span class="token punctuation">}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>@IBDesignable @IBInspectable 用于定制 View 属性的可视化。在 Storyboard 中选中自定义 View，在窗口右侧选中 Attributes Inspector，CircleView 下面有3个可设置的属性：Line Width, Color, Scale。</li>
@@ -191,7 +191,7 @@ class CircleView: UIView {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.gouchicao.com/2017/10/20/自定义视图/" data-id="cj8zo9hgv0006jkwg1w5qgu7j" class="article-share-link">Share</a>
+      <a data-url="http://www.gouchicao.com/2017/10/20/自定义视图/" data-id="cj90hzpn600062twgmni5u0ft" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
