@@ -90,6 +90,7 @@ int Add(int x, int y) {
     return x + y;
 }
 ```
+
 ## Swift Call C
 
 ``` swift
@@ -175,5 +176,5 @@ private func callGetPointerParamters() {
 ## 参考
 
 1. [Interacting with C APIs](https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/InteractingWithCAPIs.html)
-
+2. [Swift Call C sample](https://github.com/vwarship/Samples/tree/master/iOS/Practice/SwiftCallC)
 
