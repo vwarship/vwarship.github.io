@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Swift Call C | 狗吃草</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="C 类型对应 Swift 类型   C Type Swift Type     bool CBool   char, signed char CChar   unsigned char CUnsignedChar   short CShort   unsigned short CUnsignedShort   int CInt   unsigned int CUnsignedInt   long">
+<meta name="keywords" content="Xcode,Swift,C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift Call C">
+<meta property="og:url" content="http://www.gouchicao.com/2017/10/25/Swift-Call-C/index.html">
+<meta property="og:site_name" content="狗吃草">
+<meta property="og:description" content="C 类型对应 Swift 类型   C Type Swift Type     bool CBool   char, signed char CChar   unsigned char CUnsignedChar   short CShort   unsigned short CUnsignedShort   int CInt   unsigned int CUnsignedInt   long">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-10-25T09:55:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift Call C">
+<meta name="twitter:description" content="C 类型对应 Swift 类型   C Type Swift Type     bool CBool   char, signed char CChar   unsigned char CUnsignedChar   short CShort   unsigned short CUnsignedShort   int CInt   unsigned int CUnsignedInt   long">
+  
+    <link rel="alternate" href="/atom.xml" title="狗吃草" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">狗吃草</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Focusing on my intentions is where my power comes from.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于我</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.gouchicao.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Swift-Call-C" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/25/Swift-Call-C/" class="article-date">
+  <time datetime="2017-10-25T09:21:47.000Z" itemprop="datePublished">2017-10-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发/">开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Swift Call C
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="C-类型对应-Swift-类型"><a href="#C-类型对应-Swift-类型" class="headerlink" title="C 类型对应 Swift 类型"></a>C 类型对应 Swift 类型</h2><table>
+<thead>
+<tr>
+<th>C Type</th>
+<th>Swift Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bool</td>
+<td>CBool</td>
+</tr>
+<tr>
+<td>char, signed char</td>
+<td>CChar</td>
+</tr>
+<tr>
+<td>unsigned char</td>
+<td>CUnsignedChar</td>
+</tr>
+<tr>
+<td>short</td>
+<td>CShort</td>
+</tr>
+<tr>
+<td>unsigned short</td>
+<td>CUnsignedShort</td>
+</tr>
+<tr>
+<td>int</td>
+<td>CInt</td>
+</tr>
+<tr>
+<td>unsigned int</td>
+<td>CUnsignedInt</td>
+</tr>
+<tr>
+<td>long</td>
+<td>CLong</td>
+</tr>
+<tr>
+<td>unsigned long</td>
+<td>CUnsignedLong</td>
+</tr>
+<tr>
+<td>long long</td>
+<td>CLongLong</td>
+</tr>
+<tr>
+<td>unsigned long long</td>
+<td>CUnsignedLongLong</td>
+</tr>
+<tr>
+<td>wchar_t</td>
+<td>CWideChar</td>
+</tr>
+<tr>
+<td>char16_t</td>
+<td>CChar16</td>
+</tr>
+<tr>
+<td>char32_t</td>
+<td>CChar32</td>
+</tr>
+<tr>
+<td>float</td>
+<td>CFloat</td>
+</tr>
+<tr>
+<td>double</td>
+<td>CDouble</td>
+</tr>
+<tr>
+<td>char*</td>
+<td>UnsafeMutablePointer<int8></int8></td>
+</tr>
+</tbody>
+</table>
+<h2 id="配置-Objective-C-Bridging-Header-文件"><a href="#配置-Objective-C-Bridging-Header-文件" class="headerlink" title="配置 Objective-C Bridging Header 文件"></a>配置 Objective-C Bridging Header 文件</h2><ul>
+<li>打开 Objective-C Bridging Header 文件：SwiftCallC-Bridging-Header.h，添加调用 C 定义的头文件。</li>
+</ul>
+<pre class="line-numbers language-swift"><code class="language-swift">#<span class="token keyword">import</span> <span class="token string">"XXX.h"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="编写-C-代码"><a href="#编写-C-代码" class="headerlink" title="编写 C 代码"></a>编写 C 代码</h2><pre class="line-numbers language-c"><code class="language-c">
+<span class="token keyword">void</span> <span class="token function">NoParamterAndNoReturn</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Call NoParamterAndNoReturn Function\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">SetParamters</span><span class="token punctuation">(</span><span class="token keyword">char</span> c<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">char</span> uc<span class="token punctuation">,</span>
+                  <span class="token keyword">short</span> int16<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">short</span> uint16<span class="token punctuation">,</span>
+                  <span class="token keyword">int</span> int32<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span> uint32<span class="token punctuation">,</span>
+                  <span class="token keyword">long</span> long32<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">long</span> ulong32<span class="token punctuation">,</span>
+                  <span class="token keyword">long</span> <span class="token keyword">long</span> long64<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">long</span> <span class="token keyword">long</span> ulong64<span class="token punctuation">,</span>
+                  <span class="token keyword">float</span> float32<span class="token punctuation">,</span> <span class="token keyword">double</span> float64<span class="token punctuation">,</span>
+                  <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> inStr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Call SetParamters Function\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"char %d, unsigned char %u\n"</span><span class="token punctuation">,</span> c<span class="token punctuation">,</span> uc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"short %d, unsigned short %u\n"</span><span class="token punctuation">,</span> int16<span class="token punctuation">,</span> uint16<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"int %d, unsigned int %u\n"</span><span class="token punctuation">,</span> int32<span class="token punctuation">,</span> uint32<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"long %ld, unsigned long %lu\n"</span><span class="token punctuation">,</span> long32<span class="token punctuation">,</span> ulong32<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"long long %lld, unsigned long long %llu\n"</span><span class="token punctuation">,</span> long64<span class="token punctuation">,</span> ulong64<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"float %f, double %f\n"</span><span class="token punctuation">,</span> float32<span class="token punctuation">,</span> float64<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"in char* %s\n"</span><span class="token punctuation">,</span> inStr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">GetPointerParamters</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span> c<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">char</span><span class="token operator">*</span> uc<span class="token punctuation">,</span>
+                         <span class="token keyword">short</span><span class="token operator">*</span> int16<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">short</span><span class="token operator">*</span> uint16<span class="token punctuation">,</span>
+                         <span class="token keyword">int</span><span class="token operator">*</span> int32<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span><span class="token operator">*</span> uint32<span class="token punctuation">,</span>
+                         <span class="token keyword">long</span><span class="token operator">*</span> long32<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">long</span><span class="token operator">*</span> ulong32<span class="token punctuation">,</span>
+                         <span class="token keyword">long</span> <span class="token keyword">long</span><span class="token operator">*</span> long64<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">long</span> <span class="token keyword">long</span><span class="token operator">*</span> ulong64<span class="token punctuation">,</span>
+                         <span class="token keyword">float</span><span class="token operator">*</span> float32<span class="token punctuation">,</span> <span class="token keyword">double</span><span class="token operator">*</span> float64<span class="token punctuation">,</span>
+                         <span class="token keyword">char</span><span class="token operator">*</span> outStr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Call GetPointerParamters Function\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">*</span>c <span class="token operator">=</span> <span class="token string">'A'</span><span class="token punctuation">;</span>
+    <span class="token operator">*</span>uc <span class="token operator">=</span> <span class="token number">255</span><span class="token punctuation">;</span>
+    <span class="token operator">*</span>int16 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">16</span><span class="token punctuation">;</span>
+    <span class="token operator">*</span>uint16 <span class="token operator">=</span> <span class="token number">16</span><span class="token punctuation">;</span>
+    <span class="token operator">*</span>int32 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">32</span><span class="token punctuation">;</span>
+    <span class="token operator">*</span>uint32 <span class="token operator">=</span> <span class="token number">32</span><span class="token punctuation">;</span>
+    <span class="token operator">*</span>long32 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">32</span><span class="token punctuation">;</span>
+    <span class="token operator">*</span>ulong32 <span class="token operator">=</span> <span class="token number">32</span><span class="token punctuation">;</span>
+    <span class="token operator">*</span>long64 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">64</span><span class="token punctuation">;</span>
+    <span class="token operator">*</span>ulong64 <span class="token operator">=</span> <span class="token number">64</span><span class="token punctuation">;</span>
+    <span class="token operator">*</span>float32 <span class="token operator">=</span> <span class="token number">32.32</span><span class="token punctuation">;</span>
+    <span class="token operator">*</span>float64 <span class="token operator">=</span> <span class="token number">64.64</span><span class="token punctuation">;</span>
+    <span class="token function">strcpy</span><span class="token punctuation">(</span>outStr<span class="token punctuation">,</span> <span class="token string">"Goodbye!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">Add</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> y<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> x <span class="token operator">+</span> y<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Swift-Call-C"><a href="#Swift-Call-C" class="headerlink" title="Swift Call C"></a>Swift Call C</h2><pre class="line-numbers language-swift"><code class="language-swift"><span class="token keyword">override</span> <span class="token keyword">func</span> <span class="token function">viewDidLoad</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">viewDidLoad</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token function">NoParamterAndNoReturn</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token function">callSetParamters</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token function">callGetPointerParamters</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">private</span> <span class="token keyword">func</span> <span class="token function">callSetParamters</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> c<span class="token punctuation">:</span> <span class="token builtin">CChar</span> <span class="token operator">=</span> <span class="token number">127</span>
+    <span class="token keyword">let</span> uc<span class="token punctuation">:</span> <span class="token builtin">CUnsignedChar</span> <span class="token operator">=</span> <span class="token number">255</span>
+    <span class="token keyword">let</span> int16<span class="token punctuation">:</span> <span class="token builtin">CShort</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">16</span>
+    <span class="token keyword">let</span> uint16<span class="token punctuation">:</span> <span class="token builtin">CUnsignedShort</span> <span class="token operator">=</span> <span class="token number">16</span>
+    <span class="token keyword">let</span> int32<span class="token punctuation">:</span> <span class="token builtin">CInt</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">32</span>
+    <span class="token keyword">let</span> uint32<span class="token punctuation">:</span> <span class="token builtin">CUnsignedInt</span> <span class="token operator">=</span> <span class="token number">32</span>
+    <span class="token keyword">let</span> long32<span class="token punctuation">:</span> <span class="token builtin">CLong</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">32</span>
+    <span class="token keyword">let</span> ulong32<span class="token punctuation">:</span> <span class="token builtin">CUnsignedLong</span> <span class="token operator">=</span> <span class="token number">32</span>
+    <span class="token keyword">let</span> long64<span class="token punctuation">:</span> <span class="token builtin">CLongLong</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">64</span>
+    <span class="token keyword">let</span> ulong64<span class="token punctuation">:</span> <span class="token builtin">CUnsignedLongLong</span> <span class="token operator">=</span> <span class="token number">64</span>
+    <span class="token keyword">let</span> float32<span class="token punctuation">:</span> <span class="token builtin">CFloat</span> <span class="token operator">=</span> <span class="token number">32.32</span>
+    <span class="token keyword">let</span> float64<span class="token punctuation">:</span> <span class="token builtin">CDouble</span> <span class="token operator">=</span> <span class="token number">64.64</span>
+    <span class="token keyword">let</span> inStr <span class="token operator">=</span> <span class="token string">"Hello!"</span>
+
+    <span class="token function">SetParamters</span><span class="token punctuation">(</span>c<span class="token punctuation">,</span> uc<span class="token punctuation">,</span> int16<span class="token punctuation">,</span> uint16<span class="token punctuation">,</span> int32<span class="token punctuation">,</span> uint32<span class="token punctuation">,</span>
+                 long32<span class="token punctuation">,</span> ulong32<span class="token punctuation">,</span> long64<span class="token punctuation">,</span> ulong64<span class="token punctuation">,</span>
+                 float32<span class="token punctuation">,</span> float64<span class="token punctuation">,</span> inStr<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">private</span> <span class="token keyword">func</span> <span class="token function">callGetPointerParamters</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> c<span class="token punctuation">:</span> <span class="token builtin">CChar</span> <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">var</span> uc<span class="token punctuation">:</span> <span class="token builtin">CUnsignedChar</span> <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">var</span> int16<span class="token punctuation">:</span> <span class="token builtin">CShort</span> <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">var</span> uint16<span class="token punctuation">:</span> <span class="token builtin">CUnsignedShort</span> <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">var</span> int32<span class="token punctuation">:</span> <span class="token builtin">CInt</span> <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">var</span> uint32<span class="token punctuation">:</span> <span class="token builtin">CUnsignedInt</span> <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">var</span> long32<span class="token punctuation">:</span> <span class="token builtin">CLong</span> <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">var</span> ulong32<span class="token punctuation">:</span> <span class="token builtin">CUnsignedLong</span> <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">var</span> long64<span class="token punctuation">:</span> <span class="token builtin">CLongLong</span> <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">var</span> ulong64<span class="token punctuation">:</span> <span class="token builtin">CUnsignedLongLong</span> <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">var</span> float32<span class="token punctuation">:</span> <span class="token builtin">CFloat</span> <span class="token operator">=</span> <span class="token number">0.0</span>
+    <span class="token keyword">var</span> float64<span class="token punctuation">:</span> <span class="token builtin">CDouble</span> <span class="token operator">=</span> <span class="token number">0.0</span>
+
+    <span class="token keyword">let</span> cPtr <span class="token operator">=</span> <span class="token function">UnsafeMutablePointer</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>c<span class="token punctuation">)</span>
+    <span class="token keyword">let</span> ucPtr <span class="token operator">=</span> <span class="token function">UnsafeMutablePointer</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>uc<span class="token punctuation">)</span>
+    <span class="token keyword">let</span> int16Ptr <span class="token operator">=</span> <span class="token function">UnsafeMutablePointer</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>int16<span class="token punctuation">)</span>
+    <span class="token keyword">let</span> uint16Ptr <span class="token operator">=</span> <span class="token function">UnsafeMutablePointer</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>uint16<span class="token punctuation">)</span>
+    <span class="token keyword">let</span> int32Ptr <span class="token operator">=</span> <span class="token function">UnsafeMutablePointer</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>int32<span class="token punctuation">)</span>
+    <span class="token keyword">let</span> uint32Ptr <span class="token operator">=</span> <span class="token function">UnsafeMutablePointer</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>uint32<span class="token punctuation">)</span>
+    <span class="token keyword">let</span> long32Ptr <span class="token operator">=</span> <span class="token function">UnsafeMutablePointer</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>long32<span class="token punctuation">)</span>
+    <span class="token keyword">let</span> ulong32Ptr <span class="token operator">=</span> <span class="token function">UnsafeMutablePointer</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>ulong32<span class="token punctuation">)</span>
+    <span class="token keyword">let</span> long64Ptr <span class="token operator">=</span> <span class="token function">UnsafeMutablePointer</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>long64<span class="token punctuation">)</span>
+    <span class="token keyword">let</span> ulong64Ptr <span class="token operator">=</span> <span class="token function">UnsafeMutablePointer</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>ulong64<span class="token punctuation">)</span>
+    <span class="token keyword">let</span> float32Ptr <span class="token operator">=</span> <span class="token function">UnsafeMutablePointer</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>float32<span class="token punctuation">)</span>
+    <span class="token keyword">let</span> float64Ptr <span class="token operator">=</span> <span class="token function">UnsafeMutablePointer</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>float64<span class="token punctuation">)</span>
+
+    <span class="token keyword">let</span> bufSize <span class="token operator">=</span> <span class="token number">100</span>
+    <span class="token keyword">let</span> outStrPtr <span class="token operator">=</span> <span class="token builtin">UnsafeMutablePointer</span><span class="token operator">&lt;</span><span class="token builtin">Int8</span><span class="token operator">></span><span class="token punctuation">.</span><span class="token function">allocate</span><span class="token punctuation">(</span>capacity<span class="token punctuation">:</span> bufSize<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//分配内存</span>
+
+    <span class="token function">GetPointerParamters</span><span class="token punctuation">(</span>cPtr<span class="token punctuation">,</span> ucPtr<span class="token punctuation">,</span> int16Ptr<span class="token punctuation">,</span> uint16Ptr<span class="token punctuation">,</span> int32Ptr<span class="token punctuation">,</span> uint32Ptr<span class="token punctuation">,</span>
+                        long32Ptr<span class="token punctuation">,</span> ulong32Ptr<span class="token punctuation">,</span> long64Ptr<span class="token punctuation">,</span> ulong64Ptr<span class="token punctuation">,</span>
+                        float32Ptr<span class="token punctuation">,</span> float64Ptr<span class="token punctuation">,</span> outStrPtr<span class="token punctuation">)</span>
+
+    <span class="token keyword">let</span> outStr <span class="token operator">=</span> <span class="token builtin">String</span><span class="token punctuation">.</span><span class="token keyword">init</span><span class="token punctuation">(</span>cString<span class="token punctuation">:</span> outStrPtr<span class="token punctuation">)</span>
+    outStrPtr<span class="token punctuation">.</span><span class="token function">deallocate</span><span class="token punctuation">(</span>capacity<span class="token punctuation">:</span> bufSize<span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">//释放内存</span>
+
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"char <span class="token interpolation"><span class="token delimiter variable">\(</span>c<span class="token delimiter variable">)</span></span>, unsigned char <span class="token interpolation"><span class="token delimiter variable">\(</span>uc<span class="token delimiter variable">)</span></span>\n"</span><span class="token punctuation">,</span>
+        <span class="token string">"short <span class="token interpolation"><span class="token delimiter variable">\(</span>int16<span class="token delimiter variable">)</span></span>, unsigned short <span class="token interpolation"><span class="token delimiter variable">\(</span>uint16<span class="token delimiter variable">)</span></span>\n"</span><span class="token punctuation">,</span>
+        <span class="token string">"int <span class="token interpolation"><span class="token delimiter variable">\(</span>int32<span class="token delimiter variable">)</span></span>, unsigned int <span class="token interpolation"><span class="token delimiter variable">\(</span>uint32<span class="token delimiter variable">)</span></span>\n"</span><span class="token punctuation">,</span>
+        <span class="token string">"long <span class="token interpolation"><span class="token delimiter variable">\(</span>long32<span class="token delimiter variable">)</span></span>, unsigned long <span class="token interpolation"><span class="token delimiter variable">\(</span>ulong32<span class="token delimiter variable">)</span></span>\n"</span><span class="token punctuation">,</span>
+        <span class="token string">"long long <span class="token interpolation"><span class="token delimiter variable">\(</span>long64<span class="token delimiter variable">)</span></span>, unsigned long long <span class="token interpolation"><span class="token delimiter variable">\(</span>ulong64<span class="token delimiter variable">)</span></span>\n"</span><span class="token punctuation">,</span>
+        <span class="token string">"float <span class="token interpolation"><span class="token delimiter variable">\(</span>float32<span class="token delimiter variable">)</span></span>, double <span class="token interpolation"><span class="token delimiter variable">\(</span>float64<span class="token delimiter variable">)</span></span>\n"</span><span class="token punctuation">,</span>
+        <span class="token string">"out char* <span class="token interpolation"><span class="token delimiter variable">\(</span>outStr<span class="token delimiter variable">)</span></span>\n"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/InteractingWithCAPIs.html" target="_blank" rel="external">Interacting with C APIs</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.gouchicao.com/2017/10/25/Swift-Call-C/" data-id="cj96ukopz0000rcyqrido1n2z" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Xcode/">Xcode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/10/20/自定义视图/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">自定义视图</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/开发/">开发</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/App/">App</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/App/" style="font-size: 10px;">App</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Swift/" style="font-size: 20px;">Swift</a> <a href="/tags/Xcode/" style="font-size: 10px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 15px;">iOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/10/25/Swift-Call-C/">Swift Call C</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/20/自定义视图/">自定义视图</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/17/使用Swift开发App入门课程笔记/">使用Swift开发App入门课程笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/16/Development-cannot-be-enabled-while-your-device-is-locked/">Development cannot be enabled while your device is locked</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/10/Creating-Blog-on-Github/">Creating Blog on Github</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 vwarship<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于我</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
