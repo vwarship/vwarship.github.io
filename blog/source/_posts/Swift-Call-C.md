@@ -175,6 +175,7 @@ private func callGetPointerParamters() {
 
 ## 参考
 
-1. [Interacting with C APIs](https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/InteractingWithCAPIs.html)
-2. [Swift Call C sample](https://github.com/vwarship/Samples/tree/master/iOS/Practice/SwiftCallC)
+1. [Swift Call C sample](https://github.com/vwarship/Samples/tree/master/iOS/Practice/SwiftCallC)
+2. [Interacting with C APIs](https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/InteractingWithCAPIs.html)
+3. [Swift 3.0 Unsafe World](http://technology.meronapps.com/2016/09/27/Swift-3-0-unsafe-world-2/?utm_source=Swift_Developments&utm_medium=email&utm_campaign=Swift_Developments_Issue_58) [中文](http://blog.csdn.net/zkh90644/article/details/52819002) [英文](http://technology.meronapps.com/2016/09/27/Swift-3-0-unsafe-world-2/?utm_source=Swift_Developments&utm_medium=email&utm_campaign=Swift_Developments_Issue_58)
 

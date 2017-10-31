@@ -78,9 +78,5 @@ class ViewController: UIViewController {
 
 ## 参考
 
-1. [iOS Use OpenSSL sample](https://github.com/vwarship/Samples/tree/master/iOS/Practice/UseOpenSSL)
-
-
-
-
-
+1. [CommonHMAC in Swift](https://stackoverflow.com/questions/24099520/commonhmac-in-swift/)
+2. [iOS Use OpenSSL sample](https://github.com/vwarship/Samples/tree/master/iOS/Practice/UseOpenSSL)
