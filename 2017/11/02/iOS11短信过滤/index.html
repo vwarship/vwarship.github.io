@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS11短信过滤 | 狗吃草</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Message Filter Extension 创建 Message Filter Extension。在已有的项目中，选择菜单 File -&amp;gt; New -&amp;gt; Target…，创建 FilterExtension。    实现过滤。编写过滤关键词的代码，打开文件 MessageFilterExtension.swift  private func offlineAction(for">
+<meta name="keywords" content="iOS,SMS,ILMessageFilterExtension">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS11短信过滤">
+<meta property="og:url" content="http://www.gouchicao.com/2017/11/02/iOS11短信过滤/index.html">
+<meta property="og:site_name" content="狗吃草">
+<meta property="og:description" content="Message Filter Extension 创建 Message Filter Extension。在已有的项目中，选择菜单 File -&amp;gt; New -&amp;gt; Target…，创建 FilterExtension。    实现过滤。编写过滤关键词的代码，打开文件 MessageFilterExtension.swift  private func offlineAction(for">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.gouchicao.com/2017/11/02/iOS11短信过滤/NewMessageFilterExtension.png">
+<meta property="og:image" content="http://www.gouchicao.com/2017/11/02/iOS11短信过滤/设置短信过滤插件.png">
+<meta property="og:image" content="http://www.gouchicao.com/2017/11/02/iOS11短信过滤/短信过滤效果.png">
+<meta property="og:image" content="http://www.gouchicao.com/2017/11/02/iOS11短信过滤/关于短信过滤与隐私.png">
+<meta property="og:updated_time" content="2017-11-02T13:24:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS11短信过滤">
+<meta name="twitter:description" content="Message Filter Extension 创建 Message Filter Extension。在已有的项目中，选择菜单 File -&amp;gt; New -&amp;gt; Target…，创建 FilterExtension。    实现过滤。编写过滤关键词的代码，打开文件 MessageFilterExtension.swift  private func offlineAction(for">
+<meta name="twitter:image" content="http://www.gouchicao.com/2017/11/02/iOS11短信过滤/NewMessageFilterExtension.png">
+  
+    <link rel="alternate" href="/atom.xml" title="狗吃草" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">狗吃草</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Focusing on my intentions is where my power comes from.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于我</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.gouchicao.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-iOS11短信过滤" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/02/iOS11短信过滤/" class="article-date">
+  <time datetime="2017-11-02T12:44:59.000Z" itemprop="datePublished">2017-11-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发/">开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS11短信过滤
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Message-Filter-Extension"><a href="#Message-Filter-Extension" class="headerlink" title="Message Filter Extension"></a>Message Filter Extension</h2><ol>
+<li><p>创建 Message Filter Extension。在已有的项目中，选择菜单 File -&gt; New -&gt; Target…，创建 FilterExtension。</p>
+<p> <img src="/2017/11/02/iOS11短信过滤/NewMessageFilterExtension.png" alt="创建 Message Filter Extension"></p>
+</li>
+<li><p>实现过滤。编写过滤关键词的代码，打开文件 MessageFilterExtension.swift</p>
+<pre class="line-numbers language-swift"><code class="language-swift"> <span class="token keyword">private</span> <span class="token keyword">func</span> <span class="token function">offlineAction</span><span class="token punctuation">(</span><span class="token keyword">for</span> queryRequest<span class="token punctuation">:</span> <span class="token builtin">ILMessageFilterQueryRequest</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">ILMessageFilterAction</span> <span class="token punctuation">{</span>
+     <span class="token keyword">guard</span> <span class="token keyword">let</span> messageBody <span class="token operator">=</span> queryRequest<span class="token punctuation">.</span>messageBody <span class="token keyword">else</span> <span class="token punctuation">{</span>
+         <span class="token keyword">return</span> <span class="token punctuation">.</span><span class="token keyword">none</span>
+     <span class="token punctuation">}</span>
+
+     <span class="token keyword">return</span> <span class="token function">isFilter</span><span class="token punctuation">(</span>messageBody<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token punctuation">.</span><span class="token builtin">filter</span> <span class="token punctuation">:</span> <span class="token punctuation">.</span><span class="token keyword">none</span>
+ <span class="token punctuation">}</span>
+
+ <span class="token keyword">private</span> <span class="token keyword">func</span> <span class="token function">isFilter</span><span class="token punctuation">(</span><span class="token number">_</span> messageBody<span class="token punctuation">:</span> <span class="token builtin">String</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">Bool</span> <span class="token punctuation">{</span>
+     <span class="token keyword">let</span> filterKeywords <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"优教育"</span><span class="token punctuation">,</span>
+                           <span class="token string">"今日新股发行"</span><span class="token punctuation">,</span>
+                           <span class="token string">"平安陆金所"</span><span class="token punctuation">,</span>
+                           <span class="token string">"集金学堂"</span><span class="token punctuation">,</span>
+                           <span class="token string">"苏宁金融"</span><span class="token punctuation">,</span>
+                           <span class="token string">"爱城市网"</span><span class="token punctuation">,</span>
+                           <span class="token string">"飞贷金融科技"</span><span class="token punctuation">,</span>
+                           <span class="token string">"家长帮"</span><span class="token punctuation">,</span>
+                           <span class="token string">"test"</span><span class="token punctuation">,</span>
+                           <span class="token string">"测试"</span><span class="token punctuation">]</span>
+
+     <span class="token keyword">for</span> keyword <span class="token keyword">in</span> filterKeywords <span class="token punctuation">{</span>
+         <span class="token keyword">if</span> messageBody<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>keyword<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+             <span class="token keyword">return</span> <span class="token boolean">true</span>
+         <span class="token punctuation">}</span>
+     <span class="token punctuation">}</span>
+
+     <span class="token keyword">return</span> <span class="token boolean">false</span>
+ <span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>设置短信过滤插件。打开手机的 设置 -&gt; 信息 -&gt; 未知与过滤信息 -&gt; 短信过滤 中设置你的短信过滤插件打开。</p>
+<p> <img src="/2017/11/02/iOS11短信过滤/设置短信过滤插件.png" alt="设置短信过滤插件"></p>
+</li>
+<li><p>查看短信过滤效果。</p>
+<p> <img src="/2017/11/02/iOS11短信过滤/短信过滤效果.png" alt="短信过滤效果"></p>
+</li>
+<li><p>关于短信过滤与隐私</p>
+<p> <img src="/2017/11/02/iOS11短信过滤/关于短信过滤与隐私.png" alt="关于短信过滤与隐私"></p>
+</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="https://yq.aliyun.com/articles/98864" target="_blank" rel="external">iOS 11 短信拦截功能初探</a></li>
+<li><a href="https://developer.apple.com/documentation/identitylookup" target="_blank" rel="external">IdentityLookup</a></li>
+<li><a href="https://developer.apple.com/videos/play/wwdc2017/249/" target="_blank" rel="external">Filtering Unwanted Messages with Identity Lookup</a></li>
+<li><a href="http://www.jianshu.com/p/3a8e45af7fdd" target="_blank" rel="external">Swift的Guard语句</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/27560301" target="_blank" rel="external">iOS 11 短信过滤扩展简介</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.gouchicao.com/2017/11/02/iOS11短信过滤/" data-id="cj9ii32y20007elwgptvbjfyx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ILMessageFilterExtension/">ILMessageFilterExtension</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SMS/">SMS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/10/25/iOS-App使用OpenSSL/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iOS App使用OpenSSL</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/开发/">开发</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/App/">App</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ILMessageFilterExtension/">ILMessageFilterExtension</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenSSL/">OpenSSL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMS/">SMS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/App/" style="font-size: 10px;">App</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/ILMessageFilterExtension/" style="font-size: 10px;">ILMessageFilterExtension</a> <a href="/tags/OpenSSL/" style="font-size: 10px;">OpenSSL</a> <a href="/tags/SMS/" style="font-size: 10px;">SMS</a> <a href="/tags/Swift/" style="font-size: 20px;">Swift</a> <a href="/tags/Xcode/" style="font-size: 10px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/11/02/iOS11短信过滤/">iOS11短信过滤</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/25/iOS-App使用OpenSSL/">iOS App使用OpenSSL</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/25/Swift-Call-C/">Swift Call C</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/20/自定义视图/">自定义视图</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/17/使用Swift开发App入门课程笔记/">使用Swift开发App入门课程笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 vwarship<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于我</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
