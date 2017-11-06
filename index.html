@@ -67,6 +67,97 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-编辑UITextField和UITextView时如何隐藏键盘" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/06/编辑UITextField和UITextView时如何隐藏键盘/" class="article-date">
+  <time datetime="2017-11-06T01:36:26.000Z" itemprop="datePublished">2017-11-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发/">开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/06/编辑UITextField和UITextView时如何隐藏键盘/">编辑UITextField和UITextView时如何隐藏键盘</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>当编辑完 UITextField 和 UITextView 控件后，键盘出来了就遮住了下面的控件，想操作下面的控件又被遮住了。</p>
+</blockquote>
+<pre class="line-numbers language-swift"><code class="language-swift"><span class="token keyword">import</span> <span class="token builtin">UIKit</span>
+
+<span class="token keyword">class</span> <span class="token class-name">ViewController</span><span class="token punctuation">:</span> <span class="token builtin">UIViewController</span><span class="token punctuation">,</span> <span class="token builtin">UITextFieldDelegate</span><span class="token punctuation">,</span> <span class="token builtin">UITextViewDelegate</span> <span class="token punctuation">{</span>
+    <span class="token atrule">@IBOutlet</span> <span class="token keyword">weak</span> <span class="token keyword">var</span> textField<span class="token punctuation">:</span> <span class="token builtin">UITextField</span><span class="token operator">!</span>
+    <span class="token atrule">@IBOutlet</span> <span class="token keyword">weak</span> <span class="token keyword">var</span> textView<span class="token punctuation">:</span> <span class="token builtin">UITextView</span><span class="token operator">!</span>
+
+    <span class="token keyword">override</span> <span class="token keyword">func</span> <span class="token function">viewDidLoad</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">viewDidLoad</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        textField<span class="token punctuation">.</span>returnKeyType <span class="token operator">=</span> <span class="token punctuation">.</span>done <span class="token comment" spellcheck="true">// 换行变成完成</span>
+        textView<span class="token punctuation">.</span>returnKeyType <span class="token operator">=</span> <span class="token punctuation">.</span>done
+
+        textField<span class="token punctuation">.</span>delegate <span class="token operator">=</span> <span class="token keyword">self</span>
+        textView<span class="token punctuation">.</span>delegate <span class="token operator">=</span> <span class="token keyword">self</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">override</span> <span class="token keyword">func</span> <span class="token function">didReceiveMemoryWarning</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">didReceiveMemoryWarning</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">func</span> <span class="token function">textFieldShouldReturn</span><span class="token punctuation">(</span><span class="token number">_</span> textField<span class="token punctuation">:</span> <span class="token builtin">UITextField</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">Bool</span> <span class="token punctuation">{</span>
+        <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">">>textFieldShouldReturn"</span><span class="token punctuation">)</span>
+
+        textField<span class="token punctuation">.</span><span class="token function">resignFirstResponder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">func</span> <span class="token function">textView</span><span class="token punctuation">(</span><span class="token number">_</span> textView<span class="token punctuation">:</span> <span class="token builtin">UITextView</span><span class="token punctuation">,</span> shouldChangeTextIn range<span class="token punctuation">:</span> <span class="token builtin">NSRange</span><span class="token punctuation">,</span> replacementText text<span class="token punctuation">:</span> <span class="token builtin">String</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">Bool</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> text <span class="token operator">==</span> <span class="token string">"\n"</span> <span class="token punctuation">{</span>
+            <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">">>textView"</span><span class="token punctuation">)</span>
+
+            textView<span class="token punctuation">.</span><span class="token function">resignFirstResponder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">return</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="https://github.com/vwarship/Samples/tree/master/iOS/Practice/UI/UITextXXXHideKeyboard" target="_blank" rel="external">UITextField UITextView Hide Keyboard</a></li>
+<li><a href="http://www.jianshu.com/p/8ddf5beaf702" target="_blank" rel="external">iOS 键盘处理（改变键盘为完成键），UITextField键盘显示隐藏，弹出，回弹</a></li>
+<li><a href="http://www.hangge.com/blog/cache/detail_530.html" target="_blank" rel="external">Swift - 文本输入框（UITextField）的用法</a></li>
+<li><a href="http://blog.csdn.net/st646889325/article/details/52804678" target="_blank" rel="external">swift中UITextView的使用</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.gouchicao.com/2017/11/06/编辑UITextField和UITextView时如何隐藏键盘/" data-id="cj9nkt88r000b28wgpntvrg3h" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UITextField/">UITextField</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UITextView/">UITextView</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Xcode中C语言移除警告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/11/06/Xcode中C语言移除警告/" class="article-date">
@@ -98,7 +189,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.gouchicao.com/2017/11/06/Xcode中C语言移除警告/" data-id="cj9nh6mzy0006rywg13izml53" class="article-share-link">Share</a>
+      <a data-url="http://www.gouchicao.com/2017/11/06/Xcode中C语言移除警告/" data-id="cj9nkt88i000528wgotgna6b5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Xcode/">Xcode</a></li></ul>
@@ -192,7 +283,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.gouchicao.com/2017/11/02/iOS11短信过滤/" data-id="cj9nh6n02000arywg6rui5ui0" class="article-share-link">Share</a>
+      <a data-url="http://www.gouchicao.com/2017/11/02/iOS11短信过滤/" data-id="cj9nkt88p000a28wgbtircrzh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ILMessageFilterExtension/">ILMessageFilterExtension</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SMS/">SMS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -286,7 +377,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.gouchicao.com/2017/10/25/iOS-App使用OpenSSL/" data-id="cj9nh6n000007rywg6unbxjxp" class="article-share-link">Share</a>
+      <a data-url="http://www.gouchicao.com/2017/10/25/iOS-App使用OpenSSL/" data-id="cj9nkt88m000728wgq807c995" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSSL/">OpenSSL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -543,7 +634,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.gouchicao.com/2017/10/25/Swift-Call-C/" data-id="cj9nh6mzs0002rywg3cvwj9me" class="article-share-link">Share</a>
+      <a data-url="http://www.gouchicao.com/2017/10/25/Swift-Call-C/" data-id="cj9nkt88k000628wgf6ddidxc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Xcode/">Xcode</a></li></ul>
@@ -670,7 +761,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.gouchicao.com/2017/10/20/自定义视图/" data-id="cj9nh6n03000brywg21wz4rpi" class="article-share-link">Share</a>
+      <a data-url="http://www.gouchicao.com/2017/10/20/自定义视图/" data-id="cj9nkt88w000i28wgg1dzkl9w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -807,7 +898,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.gouchicao.com/2017/10/17/使用Swift开发App入门课程笔记/" data-id="cj9nh6n05000frywgw8fcuq8n" class="article-share-link">Share</a>
+      <a data-url="http://www.gouchicao.com/2017/10/17/使用Swift开发App入门课程笔记/" data-id="cj9nkt88t000f28wgb0erfjfw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/App/">App</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li></ul>
@@ -851,7 +942,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.gouchicao.com/2017/10/16/Development-cannot-be-enabled-while-your-device-is-locked/" data-id="cj9nh6mzw0005rywg2sujuusj" class="article-share-link">Share</a>
+      <a data-url="http://www.gouchicao.com/2017/10/16/Development-cannot-be-enabled-while-your-device-is-locked/" data-id="cj9nkt88e000228wg6hh9esmh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -982,7 +1073,7 @@ $nav-link
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.gouchicao.com/2017/10/10/Creating-Blog-on-Github/" data-id="cj9nh6mzm0000rywgcx2i3qv4" class="article-share-link">Share</a>
+      <a data-url="http://www.gouchicao.com/2017/10/10/Creating-Blog-on-Github/" data-id="cj9nkt889000028wgx0h1h1np" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
@@ -1013,7 +1104,7 @@ $nav-link
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/App/">App</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ILMessageFilterExtension/">ILMessageFilterExtension</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenSSL/">OpenSSL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMS/">SMS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/App/">App</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ILMessageFilterExtension/">ILMessageFilterExtension</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenSSL/">OpenSSL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMS/">SMS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UITextField/">UITextField</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UITextView/">UITextView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
     </div>
   </div>
 
@@ -1023,7 +1114,7 @@ $nav-link
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/App/" style="font-size: 10px;">App</a> <a href="/tags/C/" style="font-size: 15px;">C</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/ILMessageFilterExtension/" style="font-size: 10px;">ILMessageFilterExtension</a> <a href="/tags/OpenSSL/" style="font-size: 10px;">OpenSSL</a> <a href="/tags/SMS/" style="font-size: 10px;">SMS</a> <a href="/tags/Swift/" style="font-size: 20px;">Swift</a> <a href="/tags/Xcode/" style="font-size: 15px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+      <a href="/tags/App/" style="font-size: 10px;">App</a> <a href="/tags/C/" style="font-size: 15px;">C</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/ILMessageFilterExtension/" style="font-size: 10px;">ILMessageFilterExtension</a> <a href="/tags/OpenSSL/" style="font-size: 10px;">OpenSSL</a> <a href="/tags/SMS/" style="font-size: 10px;">SMS</a> <a href="/tags/Swift/" style="font-size: 20px;">Swift</a> <a href="/tags/UITextField/" style="font-size: 10px;">UITextField</a> <a href="/tags/UITextView/" style="font-size: 10px;">UITextView</a> <a href="/tags/Xcode/" style="font-size: 15px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
     </div>
   </div>
 
@@ -1045,6 +1136,10 @@ $nav-link
       <ul>
         
           <li>
+            <a href="/2017/11/06/编辑UITextField和UITextView时如何隐藏键盘/">编辑UITextField和UITextView时如何隐藏键盘</a>
+          </li>
+        
+          <li>
             <a href="/2017/11/06/Xcode中C语言移除警告/">Xcode中C语言移除警告</a>
           </li>
         
@@ -1058,10 +1153,6 @@ $nav-link
         
           <li>
             <a href="/2017/10/25/Swift-Call-C/">Swift Call C</a>
-          </li>
-        
-          <li>
-            <a href="/2017/10/20/自定义视图/">自定义视图</a>
           </li>
         
       </ul>

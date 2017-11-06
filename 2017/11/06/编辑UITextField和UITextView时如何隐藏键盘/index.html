@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>编辑UITextField和UITextView时如何隐藏键盘 | 狗吃草</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="当编辑完 UITextField 和 UITextView 控件后，键盘出来了就遮住了下面的控件，想操作下面的控件又被遮住了。  import UIKit  class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {     @IBOutlet weak var textField: UITe">
+<meta name="keywords" content="UITextField,UITextView">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编辑UITextField和UITextView时如何隐藏键盘">
+<meta property="og:url" content="http://www.gouchicao.com/2017/11/06/编辑UITextField和UITextView时如何隐藏键盘/index.html">
+<meta property="og:site_name" content="狗吃草">
+<meta property="og:description" content="当编辑完 UITextField 和 UITextView 控件后，键盘出来了就遮住了下面的控件，想操作下面的控件又被遮住了。  import UIKit  class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {     @IBOutlet weak var textField: UITe">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-11-06T02:48:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="编辑UITextField和UITextView时如何隐藏键盘">
+<meta name="twitter:description" content="当编辑完 UITextField 和 UITextView 控件后，键盘出来了就遮住了下面的控件，想操作下面的控件又被遮住了。  import UIKit  class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {     @IBOutlet weak var textField: UITe">
+  
+    <link rel="alternate" href="/atom.xml" title="狗吃草" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">狗吃草</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Focusing on my intentions is where my power comes from.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于我</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.gouchicao.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-编辑UITextField和UITextView时如何隐藏键盘" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/06/编辑UITextField和UITextView时如何隐藏键盘/" class="article-date">
+  <time datetime="2017-11-06T01:36:26.000Z" itemprop="datePublished">2017-11-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发/">开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      编辑UITextField和UITextView时如何隐藏键盘
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>当编辑完 UITextField 和 UITextView 控件后，键盘出来了就遮住了下面的控件，想操作下面的控件又被遮住了。</p>
+</blockquote>
+<pre class="line-numbers language-swift"><code class="language-swift"><span class="token keyword">import</span> <span class="token builtin">UIKit</span>
+
+<span class="token keyword">class</span> <span class="token class-name">ViewController</span><span class="token punctuation">:</span> <span class="token builtin">UIViewController</span><span class="token punctuation">,</span> <span class="token builtin">UITextFieldDelegate</span><span class="token punctuation">,</span> <span class="token builtin">UITextViewDelegate</span> <span class="token punctuation">{</span>
+    <span class="token atrule">@IBOutlet</span> <span class="token keyword">weak</span> <span class="token keyword">var</span> textField<span class="token punctuation">:</span> <span class="token builtin">UITextField</span><span class="token operator">!</span>
+    <span class="token atrule">@IBOutlet</span> <span class="token keyword">weak</span> <span class="token keyword">var</span> textView<span class="token punctuation">:</span> <span class="token builtin">UITextView</span><span class="token operator">!</span>
+
+    <span class="token keyword">override</span> <span class="token keyword">func</span> <span class="token function">viewDidLoad</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">viewDidLoad</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        textField<span class="token punctuation">.</span>returnKeyType <span class="token operator">=</span> <span class="token punctuation">.</span>done <span class="token comment" spellcheck="true">// 换行变成完成</span>
+        textView<span class="token punctuation">.</span>returnKeyType <span class="token operator">=</span> <span class="token punctuation">.</span>done
+
+        textField<span class="token punctuation">.</span>delegate <span class="token operator">=</span> <span class="token keyword">self</span>
+        textView<span class="token punctuation">.</span>delegate <span class="token operator">=</span> <span class="token keyword">self</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">override</span> <span class="token keyword">func</span> <span class="token function">didReceiveMemoryWarning</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">didReceiveMemoryWarning</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">func</span> <span class="token function">textFieldShouldReturn</span><span class="token punctuation">(</span><span class="token number">_</span> textField<span class="token punctuation">:</span> <span class="token builtin">UITextField</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">Bool</span> <span class="token punctuation">{</span>
+        <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">">>textFieldShouldReturn"</span><span class="token punctuation">)</span>
+
+        textField<span class="token punctuation">.</span><span class="token function">resignFirstResponder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">func</span> <span class="token function">textView</span><span class="token punctuation">(</span><span class="token number">_</span> textView<span class="token punctuation">:</span> <span class="token builtin">UITextView</span><span class="token punctuation">,</span> shouldChangeTextIn range<span class="token punctuation">:</span> <span class="token builtin">NSRange</span><span class="token punctuation">,</span> replacementText text<span class="token punctuation">:</span> <span class="token builtin">String</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">Bool</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> text <span class="token operator">==</span> <span class="token string">"\n"</span> <span class="token punctuation">{</span>
+            <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">">>textView"</span><span class="token punctuation">)</span>
+
+            textView<span class="token punctuation">.</span><span class="token function">resignFirstResponder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">return</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="https://github.com/vwarship/Samples/tree/master/iOS/Practice/UI/UITextXXXHideKeyboard" target="_blank" rel="external">UITextField UITextView Hide Keyboard</a></li>
+<li><a href="http://www.jianshu.com/p/8ddf5beaf702" target="_blank" rel="external">iOS 键盘处理（改变键盘为完成键），UITextField键盘显示隐藏，弹出，回弹</a></li>
+<li><a href="http://www.hangge.com/blog/cache/detail_530.html" target="_blank" rel="external">Swift - 文本输入框（UITextField）的用法</a></li>
+<li><a href="http://blog.csdn.net/st646889325/article/details/52804678" target="_blank" rel="external">swift中UITextView的使用</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.gouchicao.com/2017/11/06/编辑UITextField和UITextView时如何隐藏键盘/" data-id="cj9nkt88r000b28wgpntvrg3h" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UITextField/">UITextField</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UITextView/">UITextView</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/11/06/Xcode中C语言移除警告/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Xcode中C语言移除警告</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/开发/">开发</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/App/">App</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ILMessageFilterExtension/">ILMessageFilterExtension</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenSSL/">OpenSSL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMS/">SMS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UITextField/">UITextField</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UITextView/">UITextView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/App/" style="font-size: 10px;">App</a> <a href="/tags/C/" style="font-size: 15px;">C</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/ILMessageFilterExtension/" style="font-size: 10px;">ILMessageFilterExtension</a> <a href="/tags/OpenSSL/" style="font-size: 10px;">OpenSSL</a> <a href="/tags/SMS/" style="font-size: 10px;">SMS</a> <a href="/tags/Swift/" style="font-size: 20px;">Swift</a> <a href="/tags/UITextField/" style="font-size: 10px;">UITextField</a> <a href="/tags/UITextView/" style="font-size: 10px;">UITextView</a> <a href="/tags/Xcode/" style="font-size: 15px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/11/06/编辑UITextField和UITextView时如何隐藏键盘/">编辑UITextField和UITextView时如何隐藏键盘</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/06/Xcode中C语言移除警告/">Xcode中C语言移除警告</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/02/iOS11短信过滤/">iOS11短信过滤</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/25/iOS-App使用OpenSSL/">iOS App使用OpenSSL</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/25/Swift-Call-C/">Swift Call C</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 vwarship<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于我</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
