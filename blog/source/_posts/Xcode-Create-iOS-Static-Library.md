@@ -38,4 +38,6 @@ categories: 开发
 6. [ld: warning: ignoring file](https://stackoverflow.com/questions/22910866/ld-warning-ignoring-file)
 7. [iOS生成静态库方法-iOS集成静态库-iOS合并静态库](http://blog.sina.com.cn/s/blog_7b9d64af0101jlym.html)
 8. [iOS黄色警告之was built for newer iOS version (7.0) than being linked (6.0)解决办法](http://blog.csdn.net/l2i2j2/article/details/51184515)
-9. [iOS App使用OpenSSL](https://vwarship.github.io/2017/10/25/iOS-App使用OpenSSL/)
+9. [Creating a Static Library in iOS Tutorial](https://www.raywenderlich.com/41377/creating-a-static-library-in-ios-tutorial)
+10. [iOS App使用OpenSSL](https://vwarship.github.io/2017/10/25/iOS-App使用OpenSSL/)
+11. [在ios中调用C语言的国密算法SM2以替换RSA](http://blog.csdn.net/qq_15509071/article/details/51862664)
