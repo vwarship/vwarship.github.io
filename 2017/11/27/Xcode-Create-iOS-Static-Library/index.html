@@ -3,28 +3,28 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Xcode Create iOS Static Library | 狗吃草</title>
+  <title>Xcode Create iOS Static Library | 王军建的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="创建一个iOS静态库，使用C语言开发。  创建静态库 编译配置 当你开发的时候使用的iOS SDK 11时，想要让发布的版本可以在iOS SDK 8以上都可以运行，就需要设置：Build Setting -&amp;gt; Architecture -&amp;gt; Build Active Architecture Only = No; Build Setting -&amp;gt; Deployment -&amp;gt">
 <meta name="keywords" content="iOS,C,静态库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Xcode Create iOS Static Library">
-<meta property="og:url" content="http://www.gouchicao.com/2017/11/27/Xcode-Create-iOS-Static-Library/index.html">
-<meta property="og:site_name" content="狗吃草">
+<meta property="og:url" content="http://www.wangjunjian.com/2017/11/27/Xcode-Create-iOS-Static-Library/index.html">
+<meta property="og:site_name" content="王军建的博客">
 <meta property="og:description" content="创建一个iOS静态库，使用C语言开发。  创建静态库 编译配置 当你开发的时候使用的iOS SDK 11时，想要让发布的版本可以在iOS SDK 8以上都可以运行，就需要设置：Build Setting -&amp;gt; Architecture -&amp;gt; Build Active Architecture Only = No; Build Setting -&amp;gt; Deployment -&amp;gt">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.gouchicao.com/2017/11/27/Xcode-Create-iOS-Static-Library/Create-iOS-Cocoa-Touch-Static-Library.png">
-<meta property="og:image" content="http://www.gouchicao.com/2017/11/27/Xcode-Create-iOS-Static-Library/Build-Active-Architecture-Only.png">
-<meta property="og:image" content="http://www.gouchicao.com/2017/11/27/Xcode-Create-iOS-Static-Library/iOS-Deployment-Target.png">
-<meta property="og:image" content="http://www.gouchicao.com/2017/11/27/Xcode-Create-iOS-Static-Library/Edit-Scheme-Menu.png">
-<meta property="og:image" content="http://www.gouchicao.com/2017/11/27/Xcode-Create-iOS-Static-Library/Edit-Scheme-Dialog.png">
-<meta property="og:updated_time" content="2017-11-27T07:32:28.120Z">
+<meta property="og:image" content="http://www.wangjunjian.com/2017/11/27/Xcode-Create-iOS-Static-Library/Create-iOS-Cocoa-Touch-Static-Library.png">
+<meta property="og:image" content="http://www.wangjunjian.com/2017/11/27/Xcode-Create-iOS-Static-Library/Build-Active-Architecture-Only.png">
+<meta property="og:image" content="http://www.wangjunjian.com/2017/11/27/Xcode-Create-iOS-Static-Library/iOS-Deployment-Target.png">
+<meta property="og:image" content="http://www.wangjunjian.com/2017/11/27/Xcode-Create-iOS-Static-Library/Edit-Scheme-Menu.png">
+<meta property="og:image" content="http://www.wangjunjian.com/2017/11/27/Xcode-Create-iOS-Static-Library/Edit-Scheme-Dialog.png">
+<meta property="og:updated_time" content="2017-11-27T09:07:47.519Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Xcode Create iOS Static Library">
 <meta name="twitter:description" content="创建一个iOS静态库，使用C语言开发。  创建静态库 编译配置 当你开发的时候使用的iOS SDK 11时，想要让发布的版本可以在iOS SDK 8以上都可以运行，就需要设置：Build Setting -&amp;gt; Architecture -&amp;gt; Build Active Architecture Only = No; Build Setting -&amp;gt; Deployment -&amp;gt">
-<meta name="twitter:image" content="http://www.gouchicao.com/2017/11/27/Xcode-Create-iOS-Static-Library/Create-iOS-Cocoa-Touch-Static-Library.png">
+<meta name="twitter:image" content="http://www.wangjunjian.com/2017/11/27/Xcode-Create-iOS-Static-Library/Create-iOS-Cocoa-Touch-Static-Library.png">
   
-    <link rel="alternate" href="/atom.xml" title="狗吃草" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="王军建的博客" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -44,7 +44,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">狗吃草</a>
+        <a href="/" id="logo">王军建的博客</a>
       </h1>
       
         <h2 id="subtitle-wrap">
@@ -70,7 +70,7 @@
         <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.gouchicao.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.wangjunjian.com"></form>
       </div>
     </div>
   </div>
@@ -123,13 +123,15 @@
 <li><a href="https://stackoverflow.com/questions/22910866/ld-warning-ignoring-file" target="_blank" rel="external">ld: warning: ignoring file</a></li>
 <li><a href="http://blog.sina.com.cn/s/blog_7b9d64af0101jlym.html" target="_blank" rel="external">iOS生成静态库方法-iOS集成静态库-iOS合并静态库</a></li>
 <li><a href="http://blog.csdn.net/l2i2j2/article/details/51184515" target="_blank" rel="external">iOS黄色警告之was built for newer iOS version (7.0) than being linked (6.0)解决办法</a></li>
+<li><a href="https://www.raywenderlich.com/41377/creating-a-static-library-in-ios-tutorial" target="_blank" rel="external">Creating a Static Library in iOS Tutorial</a></li>
 <li><a href="https://vwarship.github.io/2017/10/25/iOS-App使用OpenSSL/" target="_blank" rel="external">iOS App使用OpenSSL</a></li>
+<li><a href="http://blog.csdn.net/qq_15509071/article/details/51862664" target="_blank" rel="external">在ios中调用C语言的国密算法SM2以替换RSA</a></li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.gouchicao.com/2017/11/27/Xcode-Create-iOS-Static-Library/" data-id="cjahu0dn70006n4yqajzd1fog" class="article-share-link">Share</a>
+      <a data-url="http://www.wangjunjian.com/2017/11/27/Xcode-Create-iOS-Static-Library/" data-id="cjb1wr5aq0006omyqk7i6fomn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/静态库/">静态库</a></li></ul>
