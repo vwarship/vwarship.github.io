@@ -67,6 +67,109 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Matlab-Coder-M语言转译成C或C-语言" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/11/Matlab-Coder-M语言转译成C或C-语言/" class="article-date">
+  <time datetime="2017-12-11T08:44:05.000Z" itemprop="datePublished">2017-12-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发/">开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/11/Matlab-Coder-M语言转译成C或C-语言/">Matlab Coder(M语言转译成C或C++语言)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>当你使用M语言开发的算法，想移植到使用Linux做为操作系统的arm智能设备上时，Matlab Coder是一个非常棒的工具。使用Matlab Coder生成的C/C++代码不需要依赖于matlab，也不需要依赖于MCR。</p>
+</blockquote>
+<h2 id="1-打开Matlab，安装默认的编译器，在Command-Window窗口中输入mex-setup。"><a href="#1-打开Matlab，安装默认的编译器，在Command-Window窗口中输入mex-setup。" class="headerlink" title="1. 打开Matlab，安装默认的编译器，在Command Window窗口中输入mex -setup。"></a>1. 打开Matlab，安装默认的编译器，在Command Window窗口中输入mex -setup。</h2><pre><code>&gt;&gt; mex -setup
+
+Welcome to mex -setup.  This utility will help you set up
+a default compiler.  For a list of supported compilers, see
+http://www.mathworks.com/support/compilers/R2013b/win64.html
+
+Please choose your compiler for building MEX-files:
+
+Would you like mex to locate installed compilers [y]/n? y
+
+Select a compiler:
+[1] Microsoft Visual C++ 2012 in D:\Program Files\Microsoft Visual Studio 11.0
+[2] Microsoft Visual C++ 2010 in C:\Program Files (x86)\Microsoft Visual Studio 10.0
+
+[0] None
+
+Compiler: 2
+
+Please verify your choices:
+
+Compiler: Microsoft Visual C++ 2010
+Location: C:\Program Files (x86)\Microsoft Visual Studio 10.0
+
+Are these correct [y]/n? y
+
+***************************************************************************
+Warning: MEX-files generated using Microsoft Visual C++ 2010 require
+that Microsoft Visual Studio 2010 run-time libraries be
+available on the computer they are run on.
+If you plan to redistribute your MEX-files to other MATLAB
+users, be sure that they have the run-time libraries.
+***************************************************************************
+
+
+Trying to update options file: C:\Users\Administrator\AppData\Roaming\MathWorks\MATLAB\R2013b\mexopts.bat
+From template:              C:\PROGRA~1\MATLAB\R2013b\bin\win64\mexopts\msvc100opts.bat
+
+Done . . .
+
+**************************************************************************
+Warning: The MATLAB C and Fortran API has changed to support MATLAB
+variables with more than 2^32-1 elements.  In the near future
+you will be required to update your code to utilize the new
+API. You can find more information about this at:
+http://www.mathworks.com/help/matlab/matlab_external/upgrading-mex-files-to-use-64-bit-api.html
+Building with the -largeArrayDims option enables the new API.
+**************************************************************************
+</code></pre><h2 id="2-选择APPS-gt-MATLAB-Coder，创建项目。"><a href="#2-选择APPS-gt-MATLAB-Coder，创建项目。" class="headerlink" title="2. 选择APPS-&gt;MATLAB Coder，创建项目。"></a>2. 选择APPS-&gt;MATLAB Coder，创建项目。</h2><p><img src="/2017/12/11/Matlab-Coder-M语言转译成C或C-语言/MATLABCoder.png" alt=""><br><img src="/2017/12/11/Matlab-Coder-M语言转译成C或C-语言/MATLABCoderNewProject.png" alt=""></p>
+<h2 id="3-设置项目生成的类型：C-C-Static-Library。"><a href="#3-设置项目生成的类型：C-C-Static-Library。" class="headerlink" title="3. 设置项目生成的类型：C/C++ Static Library。"></a>3. 设置项目生成的类型：C/C++ Static Library。</h2><p><img src="/2017/12/11/Matlab-Coder-M语言转译成C或C-语言/MATLABCoderSettingOutputTypeCorCplusplusStaticLibrary.png" alt=""></p>
+<h2 id="4-添加M函数，可以是多个，这里只使用的一个m函数：test-m"><a href="#4-添加M函数，可以是多个，这里只使用的一个m函数：test-m" class="headerlink" title="4. 添加M函数，可以是多个，这里只使用的一个m函数：test.m"></a>4. 添加M函数，可以是多个，这里只使用的一个m函数：test.m</h2><pre class="line-numbers language-m"><code class="language-m">function r = test(x, y)
+    r = round(x+y);
+end
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="/2017/12/11/Matlab-Coder-M语言转译成C或C-语言/MATLABCoderEntryPointAddFiles.png" alt=""><br><img src="/2017/12/11/Matlab-Coder-M语言转译成C或C-语言/MATLABCoderEntryPointDefineParamterType.png" alt=""></p>
+<h2 id="5-生成C-C-代码。"><a href="#5-生成C-C-代码。" class="headerlink" title="5. 生成C/C++代码。"></a>5. 生成C/C++代码。</h2><p><img src="/2017/12/11/Matlab-Coder-M语言转译成C或C-语言/MATLABCoderGenerateCorCplusplusCode.png" alt=""><br><img src="/2017/12/11/Matlab-Coder-M语言转译成C或C-语言/BuildFinished.png" alt=""><br><img src="/2017/12/11/Matlab-Coder-M语言转译成C或C-语言/CodeGenerationReport.png" alt=""></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="http://blog.csdn.net/lzh2912/article/details/52622328" target="_blank" rel="external">Matlab Coder的使用</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wangjunjian.com/2017/12/11/Matlab-Coder-M语言转译成C或C-语言/" data-id="cjb1yol710005gtyqt5v452r9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Matlab/">Matlab</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Xcode-Create-iOS-Static-Library" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/11/27/Xcode-Create-iOS-Static-Library/" class="article-date">
@@ -122,7 +225,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wangjunjian.com/2017/11/27/Xcode-Create-iOS-Static-Library/" data-id="cjb1wr5aq0006omyqk7i6fomn" class="article-share-link">Share</a>
+      <a data-url="http://www.wangjunjian.com/2017/11/27/Xcode-Create-iOS-Static-Library/" data-id="cjb1yol740007gtyqcdbg87dc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/静态库/">静态库</a></li></ul>
@@ -180,7 +283,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wangjunjian.com/2017/11/15/iOS-App-创建图标/" data-id="cjb1wr5aw000aomyqv2pqybpj" class="article-share-link">Share</a>
+      <a data-url="http://www.wangjunjian.com/2017/11/15/iOS-App-创建图标/" data-id="cjb1yol7a000bgtyqqed7wu48" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/App/">App</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/icon/">icon</a></li></ul>
@@ -271,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wangjunjian.com/2017/11/06/编辑UITextField和UITextView时如何隐藏键盘/" data-id="cjb1wr5b8000momyqpvn0vsjm" class="article-share-link">Share</a>
+      <a data-url="http://www.wangjunjian.com/2017/11/06/编辑UITextField和UITextView时如何隐藏键盘/" data-id="cjb1yol7j000pgtyqf6qlkryc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UITextField/">UITextField</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UITextView/">UITextView</a></li></ul>
@@ -314,7 +417,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wangjunjian.com/2017/11/06/Xcode中C语言移除警告/" data-id="cjb1wr5as0007omyqg3rxfusq" class="article-share-link">Share</a>
+      <a data-url="http://www.wangjunjian.com/2017/11/06/Xcode中C语言移除警告/" data-id="cjb1yol78000agtyqxuqeyfpu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Xcode/">Xcode</a></li></ul>
@@ -408,7 +511,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wangjunjian.com/2017/11/02/iOS11短信过滤/" data-id="cjb1wr5az000bomyq176eivaf" class="article-share-link">Share</a>
+      <a data-url="http://www.wangjunjian.com/2017/11/02/iOS11短信过滤/" data-id="cjb1yol7h000igtyqk0v57yg5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ILMessageFilterExtension/">ILMessageFilterExtension</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SMS/">SMS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -502,7 +605,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wangjunjian.com/2017/10/25/iOS-App使用OpenSSL/" data-id="cjb1wr5b4000fomyqrhsobaki" class="article-share-link">Share</a>
+      <a data-url="http://www.wangjunjian.com/2017/10/25/iOS-App使用OpenSSL/" data-id="cjb1yol7f000fgtyq19wrxksp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSSL/">OpenSSL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -759,7 +862,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wangjunjian.com/2017/10/25/Swift-Call-C/" data-id="cjb1wr5ao0005omyq9lal4z1q" class="article-share-link">Share</a>
+      <a data-url="http://www.wangjunjian.com/2017/10/25/Swift-Call-C/" data-id="cjb1yol730006gtyqjx4c9u0k" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Xcode/">Xcode</a></li></ul>
@@ -886,7 +989,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wangjunjian.com/2017/10/20/自定义视图/" data-id="cjb1wr5ba000pomyqs8ks5za6" class="article-share-link">Share</a>
+      <a data-url="http://www.wangjunjian.com/2017/10/20/自定义视图/" data-id="cjb1yol7l000sgtyqy0tesbhz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -1023,54 +1126,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wangjunjian.com/2017/10/17/使用Swift开发App入门课程笔记/" data-id="cjb1wr5b6000iomyqdh785ftq" class="article-share-link">Share</a>
+      <a data-url="http://www.wangjunjian.com/2017/10/17/使用Swift开发App入门课程笔记/" data-id="cjb1yol7i000mgtyqs0ajaj62" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/App/">App</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Development-cannot-be-enabled-while-your-device-is-locked" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/10/16/Development-cannot-be-enabled-while-your-device-is-locked/" class="article-date">
-  <time datetime="2017-10-16T03:18:11.000Z" itemprop="datePublished">2017-10-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/开发/">开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/16/Development-cannot-be-enabled-while-your-device-is-locked/">Development cannot be enabled while your device is locked</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="升级了iPhone的系统后，连接到Macbook-Pro，在Xcode中运行APP，出现错误：Development-cannot-be-enabled-while-your-device-is-locked"><a href="#升级了iPhone的系统后，连接到Macbook-Pro，在Xcode中运行APP，出现错误：Development-cannot-be-enabled-while-your-device-is-locked" class="headerlink" title="升级了iPhone的系统后，连接到Macbook Pro，在Xcode中运行APP，出现错误：Development cannot be enabled while your device is locked."></a>升级了iPhone的系统后，连接到Macbook Pro，在Xcode中运行APP，出现错误：Development cannot be enabled while your device is locked.</h3><p><img src="/2017/10/16/Development-cannot-be-enabled-while-your-device-is-locked/Development cannot be enabled while your device is locked.png" alt=""></p>
-<h3 id="关闭了Xcode后，打开重新运行APP，出现错误：xxx的-iPhone-is-busy-Preparing-debugger-support-for-xxx的-iPhone"><a href="#关闭了Xcode后，打开重新运行APP，出现错误：xxx的-iPhone-is-busy-Preparing-debugger-support-for-xxx的-iPhone" class="headerlink" title="关闭了Xcode后，打开重新运行APP，出现错误：xxx的 iPhone is busy: Preparing debugger support for xxx的 iPhone"></a>关闭了Xcode后，打开重新运行APP，出现错误：xxx的 iPhone is busy: Preparing debugger support for xxx的 iPhone</h3><p><img src="/2017/10/16/Development-cannot-be-enabled-while-your-device-is-locked/xxx的 iPhone is busy Preparing debugger support for xxx的 iPhone.png" alt=""></p>
-<h3 id="重新插拔iPhone数据线，在Xcode中运行APP，成功。"><a href="#重新插拔iPhone数据线，在Xcode中运行APP，成功。" class="headerlink" title="重新插拔iPhone数据线，在Xcode中运行APP，成功。"></a>重新插拔iPhone数据线，在Xcode中运行APP，成功。</h3>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.wangjunjian.com/2017/10/16/Development-cannot-be-enabled-while-your-device-is-locked/" data-id="cjb1wr5ak0002omyq8q7iv2w2" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
 
     </footer>
   </div>
@@ -1102,7 +1161,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/App/">App</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ILMessageFilterExtension/">ILMessageFilterExtension</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenSSL/">OpenSSL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMS/">SMS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UITextField/">UITextField</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UITextView/">UITextView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/icon/">icon</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/静态库/">静态库</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/App/">App</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ILMessageFilterExtension/">ILMessageFilterExtension</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenSSL/">OpenSSL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMS/">SMS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UITextField/">UITextField</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UITextView/">UITextView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/icon/">icon</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/静态库/">静态库</a></li></ul>
     </div>
   </div>
 
@@ -1112,7 +1171,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/App/" style="font-size: 12.5px;">App</a> <a href="/tags/C/" style="font-size: 15px;">C</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/ILMessageFilterExtension/" style="font-size: 10px;">ILMessageFilterExtension</a> <a href="/tags/OpenSSL/" style="font-size: 10px;">OpenSSL</a> <a href="/tags/SMS/" style="font-size: 10px;">SMS</a> <a href="/tags/Swift/" style="font-size: 17.5px;">Swift</a> <a href="/tags/UITextField/" style="font-size: 10px;">UITextField</a> <a href="/tags/UITextView/" style="font-size: 10px;">UITextView</a> <a href="/tags/Xcode/" style="font-size: 12.5px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/icon/" style="font-size: 10px;">icon</a> <a href="/tags/静态库/" style="font-size: 10px;">静态库</a>
+      <a href="/tags/App/" style="font-size: 13.33px;">App</a> <a href="/tags/C/" style="font-size: 16.67px;">C</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/ILMessageFilterExtension/" style="font-size: 10px;">ILMessageFilterExtension</a> <a href="/tags/Matlab/" style="font-size: 10px;">Matlab</a> <a href="/tags/OpenSSL/" style="font-size: 10px;">OpenSSL</a> <a href="/tags/SMS/" style="font-size: 10px;">SMS</a> <a href="/tags/Swift/" style="font-size: 16.67px;">Swift</a> <a href="/tags/UITextField/" style="font-size: 10px;">UITextField</a> <a href="/tags/UITextView/" style="font-size: 10px;">UITextView</a> <a href="/tags/Xcode/" style="font-size: 13.33px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/icon/" style="font-size: 10px;">icon</a> <a href="/tags/静态库/" style="font-size: 10px;">静态库</a>
     </div>
   </div>
 
@@ -1121,7 +1180,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li></ul>
     </div>
   </div>
 
@@ -1132,6 +1191,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/12/11/Matlab-Coder-M语言转译成C或C-语言/">Matlab Coder(M语言转译成C或C++语言)</a>
+          </li>
         
           <li>
             <a href="/2017/11/27/Xcode-Create-iOS-Static-Library/">Xcode Create iOS Static Library</a>
@@ -1147,10 +1210,6 @@
         
           <li>
             <a href="/2017/11/06/Xcode中C语言移除警告/">Xcode中C语言移除警告</a>
-          </li>
-        
-          <li>
-            <a href="/2017/11/02/iOS11短信过滤/">iOS11短信过滤</a>
           </li>
         
       </ul>

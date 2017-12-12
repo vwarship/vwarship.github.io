@@ -1,0 +1,47 @@
+>> mex -setup
+ 
+Welcome to mex -setup.  This utility will help you set up  
+a default compiler.  For a list of supported compilers, see  
+http://www.mathworks.com/support/compilers/R2013b/win64.html 
+ 
+Please choose your compiler for building MEX-files: 
+ 
+Would you like mex to locate installed compilers [y]/n? y
+ 
+Select a compiler: 
+[1] Microsoft Visual C++ 2012 in D:\Program Files\Microsoft Visual Studio 11.0 
+[2] Microsoft Visual C++ 2010 in C:\Program Files (x86)\Microsoft Visual Studio 10.0 
+ 
+[0] None 
+ 
+Compiler: 2
+ 
+Please verify your choices: 
+ 
+Compiler: Microsoft Visual C++ 2010  
+Location: C:\Program Files (x86)\Microsoft Visual Studio 10.0 
+ 
+Are these correct [y]/n? y
+ 
+*************************************************************************** 
+  Warning: MEX-files generated using Microsoft Visual C++ 2010 require 
+           that Microsoft Visual Studio 2010 run-time libraries be  
+           available on the computer they are run on. 
+           If you plan to redistribute your MEX-files to other MATLAB 
+           users, be sure that they have the run-time libraries. 
+*************************************************************************** 
+ 
+ 
+Trying to update options file: C:\Users\Administrator\AppData\Roaming\MathWorks\MATLAB\R2013b\mexopts.bat 
+From template:              C:\PROGRA~1\MATLAB\R2013b\bin\win64\mexopts\msvc100opts.bat 
+ 
+Done . . . 
+ 
+************************************************************************** 
+  Warning: The MATLAB C and Fortran API has changed to support MATLAB 
+           variables with more than 2^32-1 elements.  In the near future 
+           you will be required to update your code to utilize the new 
+           API. You can find more information about this at: 
+           http://www.mathworks.com/help/matlab/matlab_external/upgrading-mex-files-to-use-64-bit-api.html  
+           Building with the -largeArrayDims option enables the new API. 
+************************************************************************** 
